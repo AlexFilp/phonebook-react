@@ -1,13 +1,13 @@
 import {
   StyledForm,
   Label,
-  Span,
   StyledField,
-  ErrorMessageContainer,
-  ErrorText,
+  StyledPasswordField,
+  StyledErrorMessage,
+  RepeatPassErrorMessage,
   Btn,
-  Text,
-  HomeRegisterLink,
+  InputWrapper,
+  PasswordBtn,
 } from './RegisterForm.styled';
 import { useDispatch } from 'react-redux';
 import { doRegister } from '../../redux/Auth/operations';
@@ -52,7 +52,7 @@ export const RegisterForm = () => {
         {({ errors, touched }) => {
           const isValid = field =>
             touched[field] && errors[field] ? false : true;
-          const nameValid = isValid('name');
+          const usernameValid = isValid('username');
           const emailValid = isValid('email');
           const passwordValid = isValid('password');
           const repeatPasswordValid = isValid('repeatPassword');
@@ -60,54 +60,60 @@ export const RegisterForm = () => {
           return (
             <StyledForm autoComplete="on">
               <Label>
-                <Span>Username</Span>
-                <StyledField type="text" name="username" />
-                <p>
+                Username
+                <StyledField
+                  type="text"
+                  name="username"
+                  isValid={usernameValid}
+                />
+                <StyledErrorMessage>
                   <ErrorMessage name="username" />
-                </p>
+                </StyledErrorMessage>
               </Label>
               <Label>
-                <Span>Email</Span>
-                <StyledField type="email" name="email" />
-                <p>
-                  <ErrorMessage name="email" />
-                </p>
+                Email
+                <StyledField type="email" name="email" isValid={emailValid} />
+                <ErrorMessage name="email" component={StyledErrorMessage} />
               </Label>
               <Label>
-                <Span>Password</Span>
-                <div>
-                  <StyledField
+                Password
+                <InputWrapper>
+                  <StyledPasswordField
                     type={passwordVisible ? 'text' : 'password'}
                     name="password"
                     autoComplete="off"
+                    isValid={passwordValid}
                   />
-                  <button onClick={handlePasswordVisible} type="button">
+                  <PasswordBtn onClick={handlePasswordVisible} type="button">
                     {!passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
-                  </button>
-                </div>
-                <p>
-                  <ErrorMessage name="password" />
-                </p>
+                  </PasswordBtn>
+                </InputWrapper>
+                <ErrorMessage name="password" component={StyledErrorMessage} />
               </Label>
               <Label>
-                <Span>Repeat password</Span>
-                <div>
-                  <StyledField
+                Repeat password
+                <InputWrapper>
+                  <StyledPasswordField
                     type={repeatPasswordVisible ? 'text' : 'password'}
                     name="repeatPassword"
                     autoComplete="off"
+                    isValid={repeatPasswordValid}
                   />
-                  <button onClick={handleRepeatPasswordVisible} type="button">
+                  <PasswordBtn
+                    onClick={handleRepeatPasswordVisible}
+                    type="button"
+                  >
                     {!repeatPasswordVisible ? (
                       <AiFillEye />
                     ) : (
                       <AiFillEyeInvisible />
                     )}
-                  </button>
-                </div>
-                <p>
-                  <ErrorMessage name="repeatPassword" />
-                </p>
+                  </PasswordBtn>
+                </InputWrapper>
+                <ErrorMessage
+                  name="repeatPassword"
+                  component={RepeatPassErrorMessage}
+                />
               </Label>
               <Btn type="submit">Sign Up</Btn>
             </StyledForm>
