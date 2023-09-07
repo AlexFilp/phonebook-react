@@ -36,7 +36,6 @@ export const LoginForm = () => {
   };
   return (
     <>
-      {' '}
       <ContactForm onSubmit={handleSubmit(onHandleSubmit)}>
         <Label>
           <Span>Email</Span>

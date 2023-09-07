@@ -7,10 +7,14 @@ import {
   Text,
   HomeRegisterLink,
 } from './Home.styled';
+import { Helmet } from 'react-helmet';
 
 export default function Home() {
   return (
     <GlobalContainer>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <Container>
         <Title>Your own Phonebook!</Title>
         <ArrowContainer>

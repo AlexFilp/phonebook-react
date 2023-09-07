@@ -38,17 +38,18 @@ export const HomeLoginLink = styled(Link)`
   padding: 7px;
   padding-bottom: 12px;
   font-size: 35px;
-  transition: color ${pr => pr.theme.transition},
-    transform ${pr => pr.theme.transition};
-  background-color: #d3d3d373;
+  transition: background-color ${pr => pr.theme.transition};
+  background-color: ${pr => pr.theme.color.accentColor};
+  color: white;
   border: 1px solid black;
   border-radius: 4px;
   border: none;
-  box-shadow: ${pr => pr.theme.boxShadow};
   &:hover,
   &:focus {
-    color: ${pr => pr.theme.color.accentColor};
-    transform: scale(1.1);
+    background-color: ${pr => pr.theme.color.hoverAccentColor};
+  }
+  &:active {
+    background-color: ${pr => pr.theme.color.accentColor};
   }
 `;
 
@@ -62,10 +63,4 @@ export const HomeRegisterLink = styled(Link)`
   margin-left: 3px;
   color: ${pr => pr.theme.color.accentColor};
   text-decoration: underline;
-  transition: transform ${pr => pr.theme.transition};
-
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-  }
 `;
