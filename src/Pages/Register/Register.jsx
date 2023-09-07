@@ -1,5 +1,5 @@
+import { Wrapper, Title } from 'components/RegisterForm/RegisterForm.styled';
 import { GlobalContainer } from '../../components/GlobalStyle';
-import { Container } from './Register.styled';
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm';
 import { Helmet } from 'react-helmet';
 
@@ -9,9 +9,10 @@ export default function Register() {
       <Helmet>
         <title>Register</title>
       </Helmet>
-      <Container>
+      <Wrapper>
+        <Title>Sign Up</Title>
         <RegisterForm />
-      </Container>
+      </Wrapper>
     </GlobalContainer>
   );
 }

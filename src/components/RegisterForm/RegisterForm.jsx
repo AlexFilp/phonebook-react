@@ -1,8 +1,8 @@
 import {
-  Form,
+  StyledForm,
   Label,
   Span,
-  Input,
+  StyledField,
   ErrorMessageContainer,
   ErrorText,
   Btn,
@@ -11,97 +11,109 @@ import {
 } from './RegisterForm.styled';
 import { useDispatch } from 'react-redux';
 import { doRegister } from '../../redux/Auth/operations';
-import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { ErrorMessage, Formik } from 'formik';
+import { SignUpSchema } from 'schemas/yupschemas';
+import { AiFillEye } from 'react-icons/ai';
+import { AiFillEyeInvisible } from 'react-icons/ai';
 
 export const RegisterForm = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
   const dispatch = useDispatch();
 
-  const {
-    register,
-    formState: { errors, isValid },
-    handleSubmit,
-    reset,
-  } = useForm({
-    mode: 'onBlur',
-  });
+  const handlePasswordVisible = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+  const handleRepeatPasswordVisible = () => {
+    setRepeatPasswordVisible(!repeatPasswordVisible);
+  };
 
-  const onHandleSubmit = data => {
-    console.log(data.name);
-    console.log(data.email);
-    console.log(data.password);
-    dispatch(
-      doRegister({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-      })
-    );
-    reset();
+  const initialValues = {
+    username: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+  };
+
+  const handleSubmit = async (values, actions) => {
+    const { repeatPassword, ...restValues } = values;
+    dispatch(doRegister(restValues));
+    actions.resetForm();
   };
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onHandleSubmit)}>
-        <Label>
-          <Span>Username</Span>
-          <Input
-            {...register('name', {
-              required: 'The field is required',
-              minLength: {
-                value: 4,
-                message: 'Minimum 4 symbols',
-              },
-            })}
-          />
-        </Label>
-        <ErrorMessageContainer>
-          {errors?.name && (
-            <ErrorText>{errors?.name?.message || 'Error!'}</ErrorText>
-          )}
-        </ErrorMessageContainer>
-        <Label>
-          <Span>Email</Span>
-          <Input
-            type="email"
-            {...register('email', {
-              required: 'The field is required',
-            })}
-          />
-        </Label>
-        <ErrorMessageContainer>
-          {errors?.email && (
-            <ErrorText>{errors?.email?.message || 'Invalid email!'}</ErrorText>
-          )}
-        </ErrorMessageContainer>
-        <Label>
-          <Span>Password</Span>
-          <Input
-            type="password"
-            {...register('password', {
-              required: 'The field is required',
-              minLength: {
-                value: 6,
-                message: 'Minimum 6 symbols',
-              },
-            })}
-            autoComplete="off"
-          />
-        </Label>
-        <ErrorMessageContainer>
-          {errors?.password && (
-            <ErrorText>
-              {errors?.password?.message || 'Invalid password!'}
-            </ErrorText>
-          )}
-        </ErrorMessageContainer>
-        <Btn type="submit" disabled={!isValid}>
-          Register
-        </Btn>
-      </Form>
-      <Text>
-        Already have an account?{' '}
-        <HomeRegisterLink to={'/login'}>Go log in!</HomeRegisterLink>
-      </Text>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={SignUpSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, touched }) => {
+          const isValid = field =>
+            touched[field] && errors[field] ? false : true;
+          const nameValid = isValid('name');
+          const emailValid = isValid('email');
+          const passwordValid = isValid('password');
+          const repeatPasswordValid = isValid('repeatPassword');
+
+          return (
+            <StyledForm autoComplete="on">
+              <Label>
+                <Span>Username</Span>
+                <StyledField type="text" name="username" />
+                <p>
+                  <ErrorMessage name="username" />
+                </p>
+              </Label>
+              <Label>
+                <Span>Email</Span>
+                <StyledField type="email" name="email" />
+                <p>
+                  <ErrorMessage name="email" />
+                </p>
+              </Label>
+              <Label>
+                <Span>Password</Span>
+                <div>
+                  <StyledField
+                    type={passwordVisible ? 'text' : 'password'}
+                    name="password"
+                    autoComplete="off"
+                  />
+                  <button onClick={handlePasswordVisible} type="button">
+                    {!passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
+                  </button>
+                </div>
+                <p>
+                  <ErrorMessage name="password" />
+                </p>
+              </Label>
+              <Label>
+                <Span>Repeat password</Span>
+                <div>
+                  <StyledField
+                    type={repeatPasswordVisible ? 'text' : 'password'}
+                    name="repeatPassword"
+                    autoComplete="off"
+                  />
+                  <button onClick={handleRepeatPasswordVisible} type="button">
+                    {!repeatPasswordVisible ? (
+                      <AiFillEye />
+                    ) : (
+                      <AiFillEyeInvisible />
+                    )}
+                  </button>
+                </div>
+                <p>
+                  <ErrorMessage name="repeatPassword" />
+                </p>
+              </Label>
+              <Btn type="submit">Sign Up</Btn>
+            </StyledForm>
+          );
+        }}
+      </Formik>
     </>
   );
 };

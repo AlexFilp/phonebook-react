@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Form, Field } from 'formik';
 
-export const Form = styled.form`
+export const Wrapper = styled.div`
+  padding-top: 80px;
+`;
+
+export const Title = styled.h1`
+  text-align: center;
+  margin-bottom: 25px;
+`;
+
+export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin: 0 auto;
-  margin-top: 70px;
-  margin-bottom: 15px;
-  width: 400px;
-  padding: 15px;
-  border-radius: 10px;
-
-  box-shadow: ${pr => pr.theme.boxShadow};
+  gap: 5px;
+  width: 100%;
 `;
 
 export const Label = styled.label`
@@ -27,7 +30,7 @@ export const Span = styled.span`
   text-align: center;
 `;
 
-export const Input = styled.input`
+export const StyledField = styled(Field)`
   display: block;
   font-size: 20px;
   width: 100%;
@@ -40,17 +43,6 @@ export const Input = styled.input`
   border: none;
   border-radius: 4px;
   box-shadow: ${pr => pr.theme.boxShadow};
-`;
-
-export const ErrorMessageContainer = styled.div`
-  height: auto;
-  width: 100%;
-  text-align: center;
-`;
-
-export const ErrorText = styled.p`
-  font-size: 18px;
-  color: red;
 `;
 
 export const Btn = styled.button`

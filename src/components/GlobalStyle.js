@@ -42,7 +42,19 @@ a {
 `;
 
 export const GlobalContainer = styled.div`
-  max-width: 1430px;
+  width: 100%;
   padding: 0 15px;
   margin: 0 auto;
+
+  @media screen and (min-width: 375px) {
+    width: 375px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 1440px;
+  }
 `;
