@@ -21,7 +21,7 @@ export const doRegister = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (err) {
-      toast.error(`Email is invalid or already existing!`);
+      toast.error(`Email is already existing!`);
       return thunkApi.rejectWithValue(err.message);
     }
   }
@@ -36,6 +36,7 @@ export const logIn = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (err) {
+      toast.error(`Invalid email or password!`);
       return thunkApi.rejectWithValue(err.message);
     }
   }
@@ -45,6 +46,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkApi) => {
   try {
     await axios.post('/users/logout');
     clearAuthHeader();
+    toast.success(`Logout success!`);
   } catch (err) {
     return thunkApi.rejectWithValue(err.message);
   }

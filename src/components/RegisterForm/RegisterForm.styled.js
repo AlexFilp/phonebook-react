@@ -27,7 +27,8 @@ export const StyledField = styled(Field)`
   width: 100%;
   padding: 0 15px;
   padding-bottom: 6px;
-  border: 2px solid ${({ isValid }) => (isValid ? 'transparent' : 'red')};
+  border: 2px solid
+    ${props => (props.isvalid === 'is-valid' ? 'transparent' : 'red')};
   border-radius: 10px;
   background-color: lightgray;
   outline: none;
@@ -46,7 +47,8 @@ export const StyledPasswordField = styled(Field)`
   padding-bottom: 6px;
   padding-left: 15px;
   padding-right: 42px;
-  border: 2px solid ${({ isValid }) => (isValid ? 'transparent' : 'red')};
+  border: 2px solid
+    ${props => (props.isvalid === 'is-valid' ? 'transparent' : 'red')};
   border-radius: 10px;
   background-color: lightgray;
   outline: none;

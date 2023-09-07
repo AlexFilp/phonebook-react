@@ -51,7 +51,7 @@ export const RegisterForm = () => {
       >
         {({ errors, touched }) => {
           const isValid = field =>
-            touched[field] && errors[field] ? false : true;
+            touched[field] && errors[field] ? 'is-invalid' : 'is-valid';
           const usernameValid = isValid('username');
           const emailValid = isValid('email');
           const passwordValid = isValid('password');
@@ -64,7 +64,7 @@ export const RegisterForm = () => {
                 <StyledField
                   type="text"
                   name="username"
-                  isValid={usernameValid}
+                  isvalid={usernameValid}
                 />
                 <StyledErrorMessage>
                   <ErrorMessage name="username" />
@@ -72,7 +72,7 @@ export const RegisterForm = () => {
               </Label>
               <Label>
                 Email
-                <StyledField type="email" name="email" isValid={emailValid} />
+                <StyledField type="email" name="email" isvalid={emailValid} />
                 <ErrorMessage name="email" component={StyledErrorMessage} />
               </Label>
               <Label>
@@ -82,7 +82,7 @@ export const RegisterForm = () => {
                     type={passwordVisible ? 'text' : 'password'}
                     name="password"
                     autoComplete="off"
-                    isValid={passwordValid}
+                    isvalid={passwordValid}
                   />
                   <PasswordBtn onClick={handlePasswordVisible} type="button">
                     {!passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
@@ -97,7 +97,7 @@ export const RegisterForm = () => {
                     type={repeatPasswordVisible ? 'text' : 'password'}
                     name="repeatPassword"
                     autoComplete="off"
-                    isValid={repeatPasswordValid}
+                    isvalid={repeatPasswordValid}
                   />
                   <PasswordBtn
                     onClick={handleRepeatPasswordVisible}
