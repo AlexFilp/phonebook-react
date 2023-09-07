@@ -1,83 +1,80 @@
-import {
-  ContactForm,
-  Label,
-  Span,
-  Input,
-  ErrorMessageContainer,
-  ErrorText,
-  Btn,
-  Text,
-  HomeRegisterLink,
-} from './LoginForm.styled';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/Auth/operations';
-import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { ErrorMessage, Formik } from 'formik';
+import { SignInSchema } from 'schemas/yupschemas';
+import {
+  Btn,
+  InputWrapper,
+  Label,
+  PasswordBtn,
+  StyledErrorMessage,
+  StyledField,
+  StyledForm,
+  StyledPasswordField,
+} from 'components/RegisterForm/RegisterForm.styled';
+import { AiFillEye } from 'react-icons/ai';
+import { AiFillEyeInvisible } from 'react-icons/ai';
 
 export const LoginForm = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const dispatch = useDispatch();
 
-  const {
-    register,
-    formState: { errors, isValid },
-    handleSubmit,
-    reset,
-  } = useForm({
-    mode: 'onBlur',
-  });
-
-  const onHandleSubmit = data => {
-    dispatch(
-      logIn({
-        email: data.email,
-        password: data.password,
-      })
-    );
-    reset();
+  const handlePasswordVisible = () => {
+    setPasswordVisible(!passwordVisible);
   };
+
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+
+  const handleSubmit = async (values, actions) => {
+    dispatch(logIn(values));
+    actions.resetForm();
+  };
+
   return (
     <>
-      <ContactForm onSubmit={handleSubmit(onHandleSubmit)}>
-        <Label>
-          <Span>Email</Span>
-          <Input
-            type="email"
-            {...register('email', { required: 'The field is required' })}
-          />
-        </Label>
-        <ErrorMessageContainer>
-          {errors?.email && (
-            <ErrorText>{errors?.email?.message || 'Invalid email!'}</ErrorText>
-          )}
-        </ErrorMessageContainer>
-        <Label>
-          <Span>Password</Span>
-          <Input
-            type="password"
-            {...register('password', {
-              required: 'The field is required',
-              minLength: {
-                value: 6,
-                message: 'Minimum 6 symbols',
-              },
-            })}
-            autoComplete="off"
-          />
-        </Label>
-        <ErrorMessageContainer>
-          {errors?.password && (
-            <ErrorText>
-              {errors?.password?.message || 'Invalid password!'}
-            </ErrorText>
-          )}
-        </ErrorMessageContainer>
-        <Btn type="submit" disabled={!isValid}>
-          Log in
-        </Btn>
-      </ContactForm>
-      <Text>
-        Don't have an account?{' '}
-        <HomeRegisterLink to={'/register'}>Go register!</HomeRegisterLink>
-      </Text>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={SignInSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, touched }) => {
+          const isValid = field =>
+            touched[field] && errors[field] ? 'is-invalid' : 'is-valid';
+          const emailValid = isValid('email');
+          const passwordValid = isValid('password');
+
+          return (
+            <StyledForm autoComplete="on">
+              <Label>
+                Email
+                <StyledField type="email" name="email" isvalid={emailValid} />
+                <ErrorMessage name="email" component={StyledErrorMessage} />
+              </Label>
+              <Label>
+                Password
+                <InputWrapper>
+                  <StyledPasswordField
+                    type={passwordVisible ? 'text' : 'password'}
+                    name="password"
+                    autoComplete="off"
+                    isvalid={passwordValid}
+                  />
+                  <PasswordBtn onClick={handlePasswordVisible} type="button">
+                    {!passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
+                  </PasswordBtn>
+                </InputWrapper>
+                <ErrorMessage name="password" component={StyledErrorMessage} />
+              </Label>
+
+              <Btn type="submit">Sign In</Btn>
+            </StyledForm>
+          );
+        }}
+      </Formik>
     </>
   );
 };

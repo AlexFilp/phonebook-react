@@ -18,6 +18,7 @@ export const doRegister = createAsyncThunk(
     try {
       const res = await axios.post('/users/signup', credentials);
       console.log(res.data);
+      toast.success(`Welcome, ${res.data.user.name}!`);
       setAuthHeader(res.data.token);
       return res.data;
     } catch (err) {
@@ -33,6 +34,7 @@ export const logIn = createAsyncThunk(
     try {
       const res = await axios.post('/users/login', credentials);
       console.log(res.data);
+      toast.success(`Hello, ${res.data.user.name}!`);
       setAuthHeader(res.data.token);
       return res.data;
     } catch (err) {

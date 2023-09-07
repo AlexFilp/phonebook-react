@@ -12,9 +12,7 @@ export const SignInSchema = Yup.object().shape({
 });
 
 export const SignUpSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(2, 'Minimum 2 characters long')
-    .required('Required'),
+  name: Yup.string().min(2, 'Minimum 2 characters long').required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string()
     .min(6, 'Minimum 6 characters long')

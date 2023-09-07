@@ -1,5 +1,5 @@
 import { GlobalContainer } from '../../components/GlobalStyle';
-import { Container } from './Login.styled';
+import { Wrapper, Title, Text, Span } from './Login.styled';
 import { LoginForm } from '../../components/LoginForm/LoginForm';
 import { Helmet } from 'react-helmet';
 
@@ -9,9 +9,13 @@ export default function Login() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <Container>
+      <Wrapper>
+        <Title>Sign In</Title>
         <LoginForm />
-      </Container>
+      </Wrapper>
+      <Text>
+        Dont have an account? <Span to="/login">Register.</Span>
+      </Text>
     </GlobalContainer>
   );
 }

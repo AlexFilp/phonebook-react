@@ -30,7 +30,7 @@ export const RegisterForm = () => {
   };
 
   const initialValues = {
-    username: '',
+    name: '',
     email: '',
     password: '',
     repeatPassword: '',
@@ -52,7 +52,7 @@ export const RegisterForm = () => {
         {({ errors, touched }) => {
           const isValid = field =>
             touched[field] && errors[field] ? 'is-invalid' : 'is-valid';
-          const usernameValid = isValid('username');
+          const nameValid = isValid('name');
           const emailValid = isValid('email');
           const passwordValid = isValid('password');
           const repeatPasswordValid = isValid('repeatPassword');
@@ -60,14 +60,10 @@ export const RegisterForm = () => {
           return (
             <StyledForm autoComplete="on">
               <Label>
-                Username
-                <StyledField
-                  type="text"
-                  name="username"
-                  isvalid={usernameValid}
-                />
+                Name
+                <StyledField type="text" name="name" isvalid={nameValid} />
                 <StyledErrorMessage>
-                  <ErrorMessage name="username" />
+                  <ErrorMessage name="name" />
                 </StyledErrorMessage>
               </Label>
               <Label>

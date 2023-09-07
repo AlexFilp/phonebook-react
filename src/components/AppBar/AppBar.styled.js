@@ -10,4 +10,5 @@ export const Header = styled.header`
 export const AppBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;

@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const Nav = styled.nav`
-  display: inline-flex;
-`;
-
 export const NaviLink = styled(NavLink)`
   font-size: 25px;
   font-weight: 500;
@@ -15,6 +11,6 @@ export const NaviLink = styled(NavLink)`
     color: ${pr => pr.theme.color.accentColor};
   }
   &:not(:last-child) {
-    margin-right: 30px;
+    margin-right: 20px;
   }
 `;

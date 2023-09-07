@@ -52,6 +52,7 @@ export const GlobalContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 768px;
+    padding: 0 25px;
   }
 
   @media screen and (min-width: 1440px) {
