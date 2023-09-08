@@ -11,6 +11,7 @@ export const List = styled.ul`
   justify-content: start;
   align-items: center;
   gap: 10px;
+  padding-bottom: 25px;
 
   @media screen and (min-width: 1440px) {
     border: 2px solid ${pr => pr.theme.color.accentColor};
