@@ -19,7 +19,7 @@ export const Label = styled.label`
   gap: 7px;
   font-size: 20px;
   font-weight: 500;
-  color: #010101;
+  color: ${p => p.theme.color.darkColor};
 `;
 
 export const StyledField = styled(Field)`

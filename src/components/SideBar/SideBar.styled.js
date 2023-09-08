@@ -16,6 +16,7 @@ export const Btn = styled.button`
   background-color: transparent;
   font-size: 35px;
   cursor: pointer;
+  color: ${p => p.theme.color.darkColor};
 
   transition: color ${p => p.theme.transition};
 

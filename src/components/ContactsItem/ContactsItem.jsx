@@ -1,4 +1,4 @@
-import { Item, Name, Btn, PhoneNumber } from './ContactsItem.styled';
+import { Item, Name, DeleteBtn, PhoneNumber } from './ContactsItem.styled';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/Contacts/operations';
 import { MdDeleteForever } from 'react-icons/md';
@@ -15,9 +15,9 @@ export const ContactsItem = ({ id, name, phone }) => {
         <Name>{name}</Name>
         <PhoneNumber href={'tel:' + phone}>{phone}</PhoneNumber>
       </div>
-      <Btn onClick={handleDelete}>
+      <DeleteBtn onClick={handleDelete}>
         <MdDeleteForever />
-      </Btn>
+      </DeleteBtn>
     </Item>
   );
 };

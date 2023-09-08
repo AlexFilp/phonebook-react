@@ -13,7 +13,8 @@ export const FormWrapper = styled.div`
 
   @media screen and (min-width: 1440px) {
     width: 500px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: 130px;
   }
 `;
 

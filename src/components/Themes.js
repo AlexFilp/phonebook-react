@@ -2,6 +2,7 @@ export const theme = {
   color: {
     accentColor: 'rgba(0, 0, 255, 1)',
     hoverAccentColor: 'rgba(0, 0, 255, 0.7)',
+    darkColor: '#010101',
   },
   transition: '200ms ease-in',
   boxShadow: `rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,

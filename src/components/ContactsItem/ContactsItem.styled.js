@@ -22,11 +22,12 @@ export const PhoneNumber = styled.a`
   color: ${pr => pr.theme.color.accentColor};
 `;
 
-export const Btn = styled.button`
+export const DeleteBtn = styled.button`
   border: none;
   background-color: transparent;
   font-size: 30px;
   cursor: pointer;
+  color: ${p => p.theme.color.darkColor};
 
   transition: color ${pr => pr.theme.transition},
     transform ${pr => pr.theme.transition};
