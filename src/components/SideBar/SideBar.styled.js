@@ -10,6 +10,7 @@ export const SideBarWrapper = styled.div`
 
 export const Btn = styled.button`
   display: flex;
+  margin: 0;
   justify-content: center;
   align-items: center;
   border: none;
