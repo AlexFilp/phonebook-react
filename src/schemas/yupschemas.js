@@ -26,3 +26,10 @@ export const SignUpSchema = Yup.object().shape({
     .oneOf([Yup.ref('password'), undefined], 'Passwords must match')
     .required('Required'),
 });
+
+export const ContactsSchema = Yup.object().shape({
+  name: Yup.string().min(2, 'Minimum 2 characters long').required('Required'),
+  number: Yup.string()
+    .matches(/^\+\d{1,3}\d{9,15}$/, 'Wrong phone number')
+    .required('Required'),
+});

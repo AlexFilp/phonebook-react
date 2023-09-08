@@ -5,6 +5,7 @@ import { GlobalContainer } from '../GlobalStyle';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/Auth/selectors';
 import { UserMenu } from '../UserMenu/UserMenu';
+import { SideBar } from 'components/SideBar/SideBar';
 
 export const Appbar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -13,6 +14,7 @@ export const Appbar = () => {
     <Header>
       <GlobalContainer>
         <AppBarContainer>
+          <SideBar isLoggedIn={isLoggedIn} />
           <Navigation />
           {!isLoggedIn ? <AuthNav /> : <UserMenu />}
         </AppBarContainer>

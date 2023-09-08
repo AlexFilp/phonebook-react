@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Header = styled.header`
   height: 70px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  padding-top: 15px;
+  padding-top: 17px;
   padding-bottom: 15px;
 `;
 

@@ -1,6 +1,7 @@
-import { Item, Text, Btn, TelLink } from './ContactsItem.styled';
+import { Item, Name, Btn, PhoneNumber } from './ContactsItem.styled';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/Contacts/operations';
+import { MdDeleteForever } from 'react-icons/md';
 
 export const ContactsItem = ({ id, name, phone }) => {
   const dispatch = useDispatch();
@@ -10,10 +11,13 @@ export const ContactsItem = ({ id, name, phone }) => {
 
   return (
     <Item>
-      <Text>
-        {name}: <TelLink href={'tel:' + phone}>{phone}</TelLink>
-      </Text>
-      <Btn onClick={handleDelete}>Delete</Btn>
+      <div>
+        <Name>{name}</Name>
+        <PhoneNumber href={'tel:' + phone}>{phone}</PhoneNumber>
+      </div>
+      <Btn onClick={handleDelete}>
+        <MdDeleteForever />
+      </Btn>
     </Item>
   );
 };

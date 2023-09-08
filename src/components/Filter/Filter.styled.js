@@ -8,30 +8,38 @@ export const ContactsTitle = styled.h1`
 `;
 
 export const Container = styled.div`
-  width: 250px;
-  margin: 0 auto;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: ${pr => pr.theme.boxShadow};
   margin-bottom: 7px;
+  width: 100%;
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    width: 550px;
+  }
 `;
 
 export const Label = styled.span`
-  display: block;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
   font-size: 20px;
-  margin-bottom: 10px;
+  font-weight: 500;
+  color: #010101;
 `;
 
 export const Input = styled.input`
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 5px;
-  font-size: 19px;
-  text-align: center;
+  height: 50px;
   width: 100%;
-  height: 30px;
+  padding: 0 15px;
+  padding-bottom: 6px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-color: lightgray;
   outline: none;
-  border: none;
-  border-radius: 4px;
-  box-shadow: ${pr => pr.theme.boxShadow};
+  font-size: 20px;
+  font-weight: 500;
+  transition: border-color ${p => p.theme.transition};
+
+  &:focus-within {
+    border-color: ${pr => pr.theme.color.accentColor};
+  }
 `;

@@ -2,7 +2,13 @@ import { Filter } from '../../components/Filter/Filter';
 import { Form } from '../../components/Form/Form';
 import { ContactsList } from '../..//components/ContactsList/ContactsList';
 import { GlobalContainer } from '../../components/GlobalStyle';
-import { Container } from './Contacts.styled';
+import {
+  FormWrapper,
+  FormTitle,
+  LineDiv,
+  Wrapper,
+  BookWrapper,
+} from './Contacts.styled';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/Contacts/operations';
@@ -16,15 +22,25 @@ export default function Contacts() {
   }, [dispatch]);
 
   return (
-    <GlobalContainer>
+    <>
       <Helmet>
         <title>Your contacts</title>
       </Helmet>
-      <Container>
-        <Form />
-        <Filter />
-        <ContactsList />
-      </Container>
-    </GlobalContainer>
+      <Wrapper>
+        <GlobalContainer>
+          <FormWrapper>
+            <FormTitle>Phonebook</FormTitle>
+            <Form />
+          </FormWrapper>
+        </GlobalContainer>
+        <LineDiv />
+        <GlobalContainer>
+          <BookWrapper>
+            <Filter />
+            <ContactsList />
+          </BookWrapper>
+        </GlobalContainer>
+      </Wrapper>
+    </>
   );
 }

@@ -1,12 +1,5 @@
 import styled from 'styled-components';
 
-export const FormTitle = styled.h1`
-  font-size: 40px;
-  color: ${pr => pr.theme.color.accentColor};
-  text-align: center;
-  margin-bottom: 10px;
-`;
-
 export const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -59,24 +52,23 @@ export const ErrorText = styled.p`
 
 export const Btn = styled.button`
   display: block;
-  margin: 0 auto;
   margin-top: 10px;
-  padding: 7px;
-  font-size: 20px;
-  transition: color ${pr => pr.theme.transition},
-    transform ${pr => pr.theme.transition};
-  background-color: #d3d3d373;
-  border-radius: 4px;
+  background-color: ${p => p.theme.color.accentColor};
+  color: white;
   border: none;
-  box-shadow: ${pr => pr.theme.boxShadow};
+  border-radius: 10px;
+  height: 45px;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: background-color ${p => p.theme.transition};
+
   &:hover,
   &:focus {
-    color: ${pr => pr.theme.color.accentColor};
-    transform: scale(1.1);
+    background-color: ${p => p.theme.color.hoverAccentColor};
   }
-  &:disabled {
-    transform: scale(0.9);
-    color: grey;
-    box-shadow: ${pr => pr.theme.boxShadowDisabled};
+
+  &:active {
+    background-color: ${p => p.theme.color.accentColor};
   }
 `;

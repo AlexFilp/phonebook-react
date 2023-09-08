@@ -1,33 +1,36 @@
 import styled from 'styled-components';
 
 export const Item = styled.li`
+  width: 100%;
   display: flex;
-  gap: 30px;
-  align-items: center;
   justify-content: space-between;
-  width: calc((100% - 20px) / 3);
-  padding: 10px;
+  align-items: center;
+  border: 1px solid ${pr => pr.theme.color.accentColor};
   border-radius: 10px;
-  box-shadow: ${pr => pr.theme.boxShadow};
+  padding: 5px 8px;
 `;
 
-export const Text = styled.p`
+export const Name = styled.p`
   font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 5px;
 `;
 
-export const TelLink = styled.a`
+export const PhoneNumber = styled.a`
+  display: block;
+  font-size: 20px;
   color: ${pr => pr.theme.color.accentColor};
 `;
 
 export const Btn = styled.button`
-  padding: 7px;
-  font-size: 20px;
+  border: none;
+  background-color: transparent;
+  font-size: 30px;
+  cursor: pointer;
+
   transition: color ${pr => pr.theme.transition},
     transform ${pr => pr.theme.transition};
-  background-color: #d3d3d373;
-  border-radius: 4px;
-  border: none;
-  box-shadow: ${pr => pr.theme.boxShadow};
+
   &:hover,
   &:focus {
     color: ${pr => pr.theme.color.accentColor};

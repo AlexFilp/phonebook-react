@@ -14,10 +14,10 @@ export const Filter = () => {
     <>
       <ContactsTitle>Contacts</ContactsTitle>
       <Container>
-        <label>
-          <Label>Find contacts by name</Label>
+        <Label>
+          Find contacts by name
           <Input type="text" onChange={handleFilterChange} />
-        </label>
+        </Label>
       </Container>
     </>
   );

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,28 +8,29 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.p`
-  font-size: 18px;
-`;
-
-export const MailLink = styled.a`
-  display: inline-block;
-  text-decoration: underline;
-  color: ${pr => pr.theme.color.accentColor};
+  font-size: 23px;
+  font-weight: 500;
 `;
 
 export const Btn = styled.button`
-  display: block;
-  padding: 5px;
-  font-size: 20px;
-  transition: color ${pr => pr.theme.transition},
-    transform ${pr => pr.theme.transition};
-  background-color: #d3d3d373;
-  border-radius: 4px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: 500;
+  transition: color ${pr => pr.theme.transition};
   border: none;
-  box-shadow: ${pr => pr.theme.boxShadow};
+  background-color: transparent;
+  cursor: pointer;
   &:hover,
-  &:focus {
+  &:focus,
+  &.active {
     color: ${pr => pr.theme.color.accentColor};
-    transform: scale(1.1);
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;

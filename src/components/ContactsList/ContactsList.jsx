@@ -18,9 +18,11 @@ export const ContactsList = () => {
         </LoaderContainer>
       )}
       <List>
-        {filteredContacts.map(({ id, name, number }) => {
-          return <ContactsItem key={id} id={id} name={name} phone={number} />;
-        })}
+        {filteredContacts
+          .map(({ id, name, number }) => {
+            return <ContactsItem key={id} id={id} name={name} phone={number} />;
+          })
+          .reverse()}
       </List>
     </ListContainer>
   );
