@@ -14,7 +14,7 @@ export default function Login() {
         <LoginForm />
       </Wrapper>
       <Text>
-        Dont have an account? <Span to="/login">Register.</Span>
+        Dont have an account? <Span to="/register">Register.</Span>
       </Text>
     </GlobalContainer>
   );
